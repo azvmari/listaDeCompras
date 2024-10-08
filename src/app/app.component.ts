@@ -9,9 +9,9 @@ import { ItemComponent } from "./components/item/item.component";
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet, 
-    HeaderComponent, 
-    TextInputComponent, 
+    RouterOutlet,
+    HeaderComponent,
+    TextInputComponent,
     ItemComponent,
     CommonModule
   ],
@@ -21,5 +21,40 @@ import { ItemComponent } from "./components/item/item.component";
 
 
 export class AppComponent {
-  list = ["Item 1", "Item 2"]
+  list = [{ name: "Item 1", isCompleted: false }]
+
+  createItem(name: string) {
+    this.list.push({ name, isCompleted: false })
+  }
+
+  toggleCompleted(itemIndex: number) {
+    this.list.map((item, index) => {
+      if(index === itemIndex) {
+        return {
+          ...item,
+          isCompleted: !item.isCompleted
+        }
+      }
+
+      return item
+    })
+  }
+
+  editItem(name: string, itemIndex:number) {
+    this.list.map((item, index) => {
+      if(index === itemIndex) {
+        return {
+          ...item,
+          name
+        }
+      }
+
+      return item
+    })
+  }
+
+  deleteItem(itemIndex: number) {
+    this.list = this.list.filter((item, index) => index !== itemIndex)
+  }
+
 }
