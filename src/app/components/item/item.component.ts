@@ -12,9 +12,13 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ItemComponent {
   @Input() name!: string
+  @Input() checked!:boolean
   @Output() handleDelete = new EventEmitter()
   @Output() handleSave = new EventEmitter<string>()
+  @Output() toggleComplete = new EventEmitter()
+
   editing = false
+
   formControl = new FormGroup({
     name: new FormControl('', Validators.required)
   })
@@ -23,6 +27,10 @@ export class ItemComponent {
     if (changes['name']) {
       this.formControl.setValue({ name: this.name })
     }
+  }
+
+  handleToggle() {
+    this.toggleComplete.emit()
   }
 
   onEdit() {

@@ -1,9 +1,11 @@
 <form (ngSubmit)="onSave()" [formGroup]="formControl">
-  <div class="div-input">
-    <button class="check-button" type="button">
-      <mat-icon fontIcon="check"></mat-icon>
+  <div class="div-input" [ngClass]="checked ? 'checked' : ''">
+    <button class="check-button" type="button" (click)="handleToggle()">
+      <ng-container *ngIf="checked">
+        <mat-icon fontIcon="check"></mat-icon>
+      </ng-container>
     </button>
-    <input [value]="name" formControlName="name" [ngClass]="editing ? 'editing' : ''" />
+    <input [value]="name" formControlName="name" [disabled]="!editing" [ngClass]="editing ? 'editing' : ''" />
   </div>
   <div>
     <ng-container *ngIf="editing; else defaultIcon">

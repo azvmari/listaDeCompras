@@ -20,14 +20,14 @@ import { ItemComponent } from "./components/item/item.component";
 })
 
 export class AppComponent {
-  list = [{ name: "Item 1", isCompleted: false }]
+  list = [{ name: "Item 1", isCompleted: false }, { name: "Item 2", isCompleted: true }]
 
   createItem(name: string) {
     this.list.push({ name, isCompleted: false })
   }
 
   toggleCompleted(itemIndex: number) {
-    this.list.map((item, index) => {
+    this.list = this.list.map((item, index) => {
       if(index === itemIndex) {
         return {
           ...item,
@@ -40,7 +40,7 @@ export class AppComponent {
   }
 
   editItem(name: string, itemIndex:number) {
-    this.list.map((item, index) => {
+    this.list = this.list.map((item, index) => {
       if(index === itemIndex) {
         return {
           ...item,
