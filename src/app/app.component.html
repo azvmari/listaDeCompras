@@ -5,7 +5,8 @@
     <app-text-input (handleAdd)="createItem($event)"></app-text-input>
 
     <div class="items">
-      <app-item *ngFor="let item of list; let i = index" [name]="item.name" (handleDelete)="deleteItem(i)">
+      <app-item *ngFor="let item of list; let i = index" [name]="item.name" (handleDelete)="deleteItem(i)"
+        (handleSave)="editItem($event, i)">
       </app-item>
     </div>
   </div>

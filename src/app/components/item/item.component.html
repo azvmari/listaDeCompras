@@ -1,14 +1,23 @@
-<div>
-  <button class="check-button">
-    <mat-icon fontIcon="check"></mat-icon>
-  </button>
-  <p>{{name}}</p>
-</div>
-<div>
-  <button>
-    <mat-icon fontIcon="edit"></mat-icon>
-  </button>
-  <button (click)="onDelete()">
-    <mat-icon fontIcon="delete"></mat-icon>
-  </button>
-</div>
+<form (ngSubmit)="onSave()" [formGroup]="formControl">
+  <div class="div-input">
+    <button class="check-button" type="button">
+      <mat-icon fontIcon="check"></mat-icon>
+    </button>
+    <input [value]="name" formControlName="name" [ngClass]="editing ? 'editing' : ''" />
+  </div>
+  <div>
+    <ng-container *ngIf="editing; else defaultIcon">
+      <button type="submit">
+        <mat-icon fontIcon="save"></mat-icon>
+      </button>
+    </ng-container>
+    <ng-template #defaultIcon>
+      <button type="button" (click)="onEdit()">
+        <mat-icon fontIcon="edit"></mat-icon>
+      </button>
+    </ng-template>
+    <button type="button" (click)="onDelete()">
+      <mat-icon fontIcon="delete"></mat-icon>
+    </button>
+  </div>
+</form>
