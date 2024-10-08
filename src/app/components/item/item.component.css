@@ -1,8 +1,34 @@
 :host {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: #eee;
   border-radius: 8px;
   padding: 4px 8px;
   min-height: 40px;
+}
+
+div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+button {
+  height: 25px;
+  aspect-ratio: 1;
+  background-color: transparent;
+  border-radius: 50%;
+  color: #444;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.75;
+}
+
+.check-button {
+  /* border: 2px solid #000; */
+  background-color: #9400D3;
+  color: white;
 }

@@ -11,6 +11,8 @@ import { ItemComponent } from "./components/item/item.component";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
+
 export class AppComponent {
   title = 'listaDeCompras';
 }
