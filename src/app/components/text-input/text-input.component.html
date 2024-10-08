@@ -1,11 +1,11 @@
-<div class="text-input">
+<form (ngSubmit)="onSubmit()" [formGroup]="formControl" class="text-input">
   <strong>
     Adicione um novo item na lista:
   </strong>
   <div>
-    <input [formControl]="formControl" placeholder="Ex: Farinha de trigo" />
-    <button type="submit">
+    <input formControlName="name" placeholder="Ex: Farinha de trigo" />
+    <button type="submit" [disabled]="formControl.invalid">
       <mat-icon fontIcon="add"></mat-icon>
     </button>
   </div>
-</div>
+</form>

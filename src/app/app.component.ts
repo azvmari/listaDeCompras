@@ -19,7 +19,6 @@ import { ItemComponent } from "./components/item/item.component";
   styleUrl: './app.component.css'
 })
 
-
 export class AppComponent {
   list = [{ name: "Item 1", isCompleted: false }]
 

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -10,6 +10,16 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './text-input.component.css'
 })
 export class TextInputComponent {
-  @Input() handleAdd !: (name: string) => void
-  formControl = new FormControl('');  
+  @Output() handleAdd = new EventEmitter<string>()
+
+  formControl = new FormGroup({
+    name: new FormControl('', Validators.required)
+  })
+
+  onSubmit() {
+    if (this.formControl.valid && this.formControl.value.name) {
+      this.handleAdd.emit(this.formControl.value.name);
+      this.formControl.reset();
+    }
+  }
 }
