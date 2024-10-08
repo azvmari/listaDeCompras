@@ -5,13 +5,10 @@
     <app-text-input></app-text-input>
     
     <div class="items">
-      <app-item></app-item>
-      <app-item></app-item>
-      <app-item></app-item>
-      <app-item></app-item>
-      <app-item></app-item>
+      <app-item *ngFor="let item of list" [name]="item"></app-item>
     </div>
   </div>
+
+  <router-outlet />
 </main>
 
-<router-outlet />
