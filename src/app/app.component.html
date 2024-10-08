@@ -3,12 +3,12 @@
 
   <div class="list">
     <app-text-input (handleAdd)="createItem($event)"></app-text-input>
-    
+
     <div class="items">
-      <app-item *ngFor="let item of list" [name]="item.name"></app-item>
+      <app-item *ngFor="let item of list; let i = index" [name]="item.name" (handleDelete)="deleteItem(i)">
+      </app-item>
     </div>
   </div>
 
   <router-outlet />
 </main>
-
