@@ -3,7 +3,9 @@
     Adicione um novo item na lista:
   </strong>
   <div>
-    <input placeholder="Ex: Farinha de trigo" />
-    <app-button></app-button>
+    <input [formControl]="formControl" placeholder="Ex: Farinha de trigo" />
+    <button type="submit">
+      <mat-icon fontIcon="add"></mat-icon>
+    </button>
   </div>
 </div>

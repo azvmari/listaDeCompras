@@ -2,7 +2,7 @@
   <app-header></app-header>
 
   <div class="list">
-    <app-text-input></app-text-input>
+    <app-text-input [handleAdd]="createItem"></app-text-input>
     
     <div class="items">
       <app-item *ngFor="let item of list" [name]="item.name"></app-item>

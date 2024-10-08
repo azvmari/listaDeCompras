@@ -12,9 +12,21 @@
   padding-left: 5px;
 }
 
-.text-input > div {
+.text-input>div {
   display: flex;
   align-items: center;
   width: 100%;
   gap: 12px;
+}
+
+button {
+  height: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #9400D3;
+  color: white;
+  font-size: 40px;
 }
