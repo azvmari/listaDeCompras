@@ -2,18 +2,18 @@
   <app-header></app-header>
 
   <div class="form-container">
-    <form (ngSubmit)="onSubmit()" class="login-form">
+    <div class="login-form">
       <h2>Entre na sua conta</h2>
 
-      <button type="button">
+      <button type="button" (click)="loginWithGoogle()">
         <fa-icon [icon]="faGoogle"></fa-icon>
         Entrar com o Google
       </button>
 
-      <button type="button">
+      <button type="button" (click)="loginWithFacebook()">
         <mat-icon fontIcon="facebook"></mat-icon>
         Entrar com o Facebook
       </button>
-    </form>
+    </div>
   </div>
 </div>
