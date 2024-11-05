@@ -1,15 +1,1 @@
-<main class="main">
-  <app-header></app-header>
-
-  <div class="list">
-    <app-text-input (handleAdd)="createItem($event)"></app-text-input>
-
-    <div class="items">
-      <app-item *ngFor="let item of list; let i = index" [name]="item.name" [checked]="item.isCompleted"
-        (handleDelete)="deleteItem(i)" (handleSave)="editItem($event, i)" (toggleComplete)="toggleCompleted(i)">
-      </app-item>
-    </div>
-  </div>
-
-  <router-outlet />
-</main>
+<router-outlet />
