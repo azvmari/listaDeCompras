@@ -1,19 +1,15 @@
-import { GoogleAuthProvider, getAuth } from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 import { initializeApp } from 'firebase/app'
-import { EnvProps } from '../../@types/env'
-
-const envVariables = process.env as EnvProps
 
 const firebaseConfig = {
-  apiKey: envVariables.FIREBASE_API_KEY,
-  authDomain: envVariables.FIREBASE_PROJECT_ID,
-  projectId: envVariables.FIREBASE_PROJECT_ID,
-  storageBucket: envVariables.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: envVariables.FIREBASE_MESSAGING_SENDER_ID,
-  appId: envVariables.FIREBASE_APP_ID,
-  measurementId: envVariables.FIREBASE_MEASUREMENT_ID
-}
+  apiKey: "AIzaSyBcxc47awFmBpmFtRLjtRNJSpCzPQhVe9U",
+  authDomain: "lista-compras-mari.firebaseapp.com",
+  projectId: "lista-compras-mari",
+  storageBucket: "lista-compras-mari.firebasestorage.app",
+  messagingSenderId: "147946335625",
+  appId: "1:147946335625:web:c8ee4cf664bbceda9fc558",
+  measurementId: "G-4MTN2MP4SB"
+};
 
 const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
-export const provider = new GoogleAuthProvider()

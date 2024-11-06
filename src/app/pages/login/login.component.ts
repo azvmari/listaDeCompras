@@ -3,6 +3,7 @@ import { HeaderComponent } from "../../components/header/header.component";
 import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import login from '../../services/login';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +17,10 @@ export class LoginComponent {
   faGoogle = faGoogle
 
   loginWithGoogle() {
-    console.log("google")
+    login("google")
   }
 
   loginWithFacebook() {
-    console.log("facebook")
+    login("facebook")
   }
 }
