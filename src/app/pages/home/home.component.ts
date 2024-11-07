@@ -5,24 +5,34 @@ import { ItemComponent } from "../../components/item/item.component";
 import { AuthService, User } from '@auth0/auth0-angular'
 import { AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { DataService } from '../../services/data.service';
+import { ShoppingItem } from '../../@types/ShoppingItem';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, TextInputComponent, ItemComponent, AsyncPipe],
+  imports: [HeaderComponent, TextInputComponent, ItemComponent, AsyncPipe, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
   user: User | undefined | null;
-  list = [{ name: "Item 1", isCompleted: false }, { name: "Item 2", isCompleted: true }]
+  list: ShoppingItem[] = []
 
-  constructor(public auth: AuthService, private router: Router) { }
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private dataService: DataService
+  ) { }
 
   ngOnInit(): void {
     this.auth.user$.subscribe(user => {
       this.user = user;
-      console.log(user)
+    })
+
+    this.dataService.getData().subscribe(data => {
+      this.list = data.filter(item => item.userEmail === this.user?.email)
     })
   }
 
@@ -31,16 +41,22 @@ export class HomeComponent {
     this.router.navigate(["/login"])
   }
 
-  createItem(name: string) {
-    this.list.push({ name, isCompleted: false })
+  createItem(title: string) {
+    if (!this.user?.email) return
+
+    const createdItem = this.dataService.createItem({
+      title, userEmail: this.user.email
+    })
+
+    this.list.push(createdItem)
   }
 
-  toggleCompleted(itemIndex: number) {
-    this.list = this.list.map((item, index) => {
-      if (index === itemIndex) {
+  toggleCompleted(id: string) {
+    this.list = this.list.map((item) => {
+      if (item.id === id) {
         return {
           ...item,
-          isCompleted: !item.isCompleted
+          concluded: !item.concluded
         }
       }
 
@@ -48,20 +64,16 @@ export class HomeComponent {
     })
   }
 
-  editItem(name: string, itemIndex: number) {
-    this.list = this.list.map((item, index) => {
-      if (index === itemIndex) {
-        return {
-          ...item,
-          name
-        }
-      }
-
-      return item
+  editItem(title: string, id: string) {
+    this.dataService.updateItem({ 
+      id: "1", 
+      title, 
+      concluded: false, 
+      userEmail: this.user?.email || "" 
     })
   }
 
-  deleteItem(itemIndex: number) {
-    this.list = this.list.filter((item, index) => index !== itemIndex)
+  deleteItem(id: string) {
+    this.list = this.list.filter((item) => item.id !== id)
   }
 }

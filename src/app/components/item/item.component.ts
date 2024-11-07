@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './item.component.css'
 })
 export class ItemComponent {
-  @Input() name!: string
+  @Input() title!: string
   @Input() checked!:boolean
   @Output() handleDelete = new EventEmitter()
   @Output() handleSave = new EventEmitter<string>()
@@ -20,12 +20,12 @@ export class ItemComponent {
   editing = false
 
   formControl = new FormGroup({
-    name: new FormControl('', Validators.required)
+    title: new FormControl('', Validators.required)
   })
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['name']) {
-      this.formControl.setValue({ name: this.name })
+    if (changes['title']) {
+      this.formControl.setValue({ title: this.title })
     }
   }
 
@@ -38,8 +38,8 @@ export class ItemComponent {
   }
 
   onSave() {
-    if (this.formControl.value.name) {
-      this.handleSave.emit(this.formControl.value.name)
+    if (this.formControl.value.title) {
+      this.handleSave.emit(this.formControl.value.title)
     }
 
     this.editing = false

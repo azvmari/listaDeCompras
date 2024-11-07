@@ -9,8 +9,8 @@
   <app-text-input (handleAdd)="createItem($event)"></app-text-input>
 
   <div class="items">
-    <app-item *ngFor="let item of list; let i = index" [name]="item.name" [checked]="item.isCompleted"
-      (handleDelete)="deleteItem(i)" (handleSave)="editItem($event, i)" (toggleComplete)="toggleCompleted(i)">
+    <app-item *ngFor="let item of list" [title]="item.title" [checked]="item.concluded"
+      (handleDelete)="deleteItem(item.id)" (handleSave)="editItem($event, item.id)" (toggleComplete)="toggleCompleted(item.id)">
     </app-item>
   </div>
 </div>
