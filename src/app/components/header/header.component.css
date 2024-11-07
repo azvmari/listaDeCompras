@@ -3,7 +3,12 @@
   color: white;
   height: 80px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding: 0 18px;
+}
+
+.emptyDiv {
+  width: 100px;
 }

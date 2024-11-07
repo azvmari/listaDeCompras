@@ -3,7 +3,7 @@ import { HeaderComponent } from "../../components/header/header.component";
 import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import login from '../../services/login';
+import { AuthService } from '@auth0/auth0-angular'
 
 @Component({
   selector: 'app-login',
@@ -16,11 +16,13 @@ import login from '../../services/login';
 export class LoginComponent {
   faGoogle = faGoogle
 
+  constructor(private auth: AuthService) { }
+
   loginWithGoogle() {
-    login("google")
+    this.auth.loginWithRedirect()
   }
 
   loginWithFacebook() {
-    login("facebook")
+    this.auth.loginWithPopup()
   }
 }
